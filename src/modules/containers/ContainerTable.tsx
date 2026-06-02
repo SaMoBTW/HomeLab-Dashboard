@@ -14,7 +14,7 @@ interface ContainerTableProps {
 export function ContainerTable({ containers, transitioning, onStart, onStop, onRestart }: ContainerTableProps) {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[700px]">
+      <table className="w-full md:min-w-[700px]">
         <thead>
           <tr className="border-b border-hud-border bg-hud-overlay text-left">
             <th className={TH}>Container</th>

@@ -43,14 +43,15 @@ export function AppShell() {
     <div className="flex flex-col h-screen w-screen overflow-hidden bg-hud-deep text-hud-text-1">
       
       {/* FIXED HEADER */}
-      <header className="relative flex items-center justify-between h-14 px-8 border-b border-hud-border bg-hud-base shrink-0 select-none z-50">
+      <header className="relative flex items-center justify-between h-14 px-4 sm:px-8 border-b border-hud-border bg-hud-base shrink-0 select-none z-50">
         {/* Left: Terminal Toggle */}
         <button
           onClick={() => setTerminalOpen(true)}
           className="flex items-center gap-2 px-3 py-1.5 border border-hud-border font-mono text-[9px] font-semibold tracking-widest uppercase bg-[#141414] text-hud-accent hover:bg-black/10 transition-colors"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-hud-accent animate-pulse-dot" />
-          homelab - bash
+          <span className="hidden sm:inline">homelab - bash</span>
+          <span className="sm:hidden">bash</span>
         </button>
 
         {/* Center: Brand */}
@@ -59,15 +60,15 @@ export function AppShell() {
         </span>
 
         {/* Right: Section Navigation */}
-        <nav className="flex items-center gap-6 font-display font-bold text-[9px] tracking-widest uppercase text-hud-text-3">
-          <a href="#overview" className="hover:text-hud-text-1 transition-colors">Overview</a>
-          <a href="#metrics" className="hover:text-hud-text-1 transition-colors">Metrics</a>
-          <span className="w-px h-3 bg-hud-border/20" />
+        <nav className="flex items-center gap-3 sm:gap-6 font-display font-bold text-[9px] tracking-widest uppercase text-hud-text-3">
+          <a href="#overview" className="hover:text-hud-text-1 transition-colors hidden sm:inline-block">Overview</a>
+          <a href="#metrics" className="hover:text-hud-text-1 transition-colors hidden sm:inline-block">Metrics</a>
+          <span className="w-px h-3 bg-hud-border/20 hidden sm:inline-block" />
           <button
             onClick={toggleTheme}
             className="hover:text-hud-text-1 transition-colors font-mono tracking-widest uppercase font-semibold text-[9px]"
           >
-            theme: {isDarkMode ? 'dark' : 'light'}
+            <span className="hidden sm:inline">theme: </span>{isDarkMode ? 'dark' : 'light'}
           </button>
         </nav>
       </header>
