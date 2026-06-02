@@ -10,23 +10,74 @@
     --amber:       #e8b34b;
     --blue:        #4d9fff;
     --red:         #ff1b00;
+
+    /* Theme colors - Light Sandstone */
+    --hud-deep: #dddbd6;
+    --hud-base: #ebe9e4;
+    --hud-raised: #ffffff;
+    --hud-overlay: #0a0a0a;
+    --hud-border: #000000;
+    --hud-bright: #222222;
+    --hud-accent: #ff1b00;
+    --hud-accent-dim: rgba(255, 27, 0, 0.08);
+    --hud-accent-glow: rgba(255, 27, 0, 0.15);
+    --hud-amber: #e8b34b;
+    --hud-blue: #4d9fff;
+    --hud-red: #ff1b00;
+    --hud-text-1: #000000;
+    --hud-text-2: #4a4a46;
+    --hud-text-3: #b5afa6;
+
+    /* Blueprint grid colors */
+    --grid-line-1: rgba(0, 0, 0, 0.02);
+    --grid-line-2: rgba(0, 0, 0, 0.015);
+    --bar-bg: rgba(0, 0, 0, 0.08);
+  }
+
+  .dark {
+    --accent:      #ff1b00;
+    --accent-dim:  rgba(255, 27, 0, 0.15);
+    --accent-glow: rgba(255, 27, 0, 0.25);
+
+    /* Theme colors - Dark Graphite Sandstone */
+    --hud-deep: #0e0d0d;
+    --hud-base: #181716;
+    --hud-raised: #242321;
+    --hud-overlay: #050505;
+    --hud-border: #44403c;
+    --hud-bright: #ebe9e4;
+    --hud-accent: #ff1b00;
+    --hud-accent-dim: rgba(255, 27, 0, 0.15);
+    --hud-accent-glow: rgba(255, 27, 0, 0.25);
+    --hud-amber: #e8b34b;
+    --hud-blue: #4d9fff;
+    --hud-red: #ff1b00;
+    --hud-text-1: #ebe9e4;
+    --hud-text-2: #b5afa6;
+    --hud-text-3: #5a5752;
+
+    /* Blueprint grid colors */
+    --grid-line-1: rgba(255, 255, 255, 0.012);
+    --grid-line-2: rgba(255, 255, 255, 0.008);
+    --bar-bg: rgba(255, 255, 255, 0.08);
   }
 
   body {
-    background-color: #dddbd6;
-    color: #000000;
+    background-color: var(--hud-deep);
+    color: var(--hud-text-1);
     font-family: 'Space Grotesk', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     /* Scaffold blueprint paper grid texture */
     background-image:
-      linear-gradient(180deg, transparent 32%, rgba(0, 0, 0, 0.02) 32.5%, transparent 33%),
-      linear-gradient(90deg, transparent 44%, rgba(0, 0, 0, 0.02) 44.5%, transparent 45%),
-      repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(0, 0, 0, 0.015) 19px, rgba(0, 0, 0, 0.015) 20px),
-      repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(0, 0, 0, 0.015) 19px, rgba(0, 0, 0, 0.015) 20px);
+      linear-gradient(180deg, transparent 32%, var(--grid-line-1) 32.5%, transparent 33%),
+      linear-gradient(90deg, transparent 44%, var(--grid-line-1) 44.5%, transparent 45%),
+      repeating-linear-gradient(0deg, transparent, transparent 19px, var(--grid-line-2) 19px, var(--grid-line-2) 20px),
+      repeating-linear-gradient(90deg, transparent, transparent 19px, var(--grid-line-2) 19px, var(--grid-line-2) 20px);
     background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
     background-attachment: fixed;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   #root {
@@ -38,12 +89,13 @@
   /* Scrollbars */
   * {
     scrollbar-width: thin;
-    scrollbar-color: #000000 transparent;
+    scrollbar-color: var(--hud-text-1) transparent;
+    transition: scrollbar-color 0.3s ease;
   }
   *::-webkit-scrollbar       { width: 4px; height: 4px; }
   *::-webkit-scrollbar-track { background: transparent; }
-  *::-webkit-scrollbar-thumb { background: #000000; border-radius: 0px; }
-  *::-webkit-scrollbar-thumb:hover { background: #222222; }
+  *::-webkit-scrollbar-thumb { background: var(--hud-text-1); border-radius: 0px; transition: background-color 0.3s ease; }
+  *::-webkit-scrollbar-thumb:hover { background: var(--hud-bright); }
 
   /* react-grid-layout */
   .react-grid-item.react-grid-placeholder {
@@ -65,7 +117,8 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-size: 0.65rem;
-    color: #4a4a46;
+    color: var(--hud-text-2);
+    transition: color 0.3s ease;
   }
 
   .data-value {
@@ -75,10 +128,11 @@
 
   /* Card styles */
   .hud-card {
-    background: #ebe9e4;
-    border: 1px solid #000000;
+    background: var(--hud-base);
+    border: 1px solid var(--hud-border);
     position: relative;
     overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 
   .hud-card::before {
@@ -86,7 +140,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.03), transparent);
+    background: linear-gradient(90deg, transparent, rgba(128,128,128,0.05), transparent);
   }
 
   /* Accent bar — left side accent line on cards */
@@ -113,15 +167,17 @@
     content: '';
     flex: 1;
     height: 1px;
-    background: #000000;
+    background: var(--hud-border);
+    transition: background-color 0.3s ease;
   }
 
   /* Thin progress bar — sharp, full-width */
   .hud-bar {
     height: 2px;
-    background: rgba(0,0,0,0.08);
+    background: var(--bar-bg);
     position: relative;
     overflow: hidden;
+    transition: background-color 0.3s ease;
   }
   .hud-bar-fill {
     height: 100%;
@@ -137,7 +193,8 @@
   width: 100%;
   max-width: 100%;
   min-width: 0;
-  border-top: 1px solid #000000;
+  border-top: 1px solid var(--hud-border);
+  transition: border-color 0.3s ease;
 }
 .hscroll-track {
   display: flex;
@@ -155,8 +212,9 @@
   padding-left: 2rem;
   padding-right: 2rem;
   height: 540px;
-  background: #dddbd6;
-  border-bottom: 1px solid #000000;
+  background: var(--hud-deep);
+  border-bottom: 1px solid var(--hud-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 .hscroll-track::-webkit-scrollbar {
   display: none;
@@ -173,10 +231,10 @@
   scroll-snap-align: start;
   scroll-snap-stop: always;
   position: relative;
-  border-left: 1px solid #000000;
-  border-right: 1px solid #000000;
+  border-left: 1px solid var(--hud-border);
+  border-right: 1px solid var(--hud-border);
   margin-left: -1px;
-  transition: flex 0.4s cubic-bezier(0.2, 0.88, 0.12, 1), background-color 0.3s ease;
+  transition: flex 0.4s cubic-bezier(0.2, 0.88, 0.12, 1), background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 .hcard--expanded {
   flex: 0 0 clamp(480px, 95vw, 1080px);

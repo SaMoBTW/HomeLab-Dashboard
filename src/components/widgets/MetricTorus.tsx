@@ -55,23 +55,35 @@ export function MetricTorus() {
       const currentCpu = metricsRef.current.cpu;
       const netActivity = metricsRef.current.networkIn;
 
+      // Detect dark mode theme state dynamically in canvas context
+      const isDark = document.documentElement.classList.contains('dark');
+
       // Calculate speed and colors based on live stats
       const baseSpeed = 0.003 + (currentCpu / 100) * 0.045;
       const dispersion = 2 + (currentCpu / 100) * 25;
       
-      // Interpolate color from sandy-black to crimson red
+      // Interpolate color from sandy-black (light) or sandstone (dark) to crimson red
       const redRatio = Math.min(currentCpu / 85, 1);
-      const r = Math.round(74 + (255 - 74) * redRatio);
-      const g = Math.round(74 - 74 * redRatio);
-      const b = Math.round(70 - 70 * redRatio);
+      let r: number, g: number, b: number;
+      if (isDark) {
+        // Sandstone beige (#dddbd6) to crimson (#ff1b00)
+        r = Math.round(221 + (255 - 221) * redRatio);
+        g = Math.round(219 - (219 - 27) * redRatio);
+        b = Math.round(214 - 214 * redRatio);
+      } else {
+        // Sandy black (#4a4a46) to crimson (#ff1b00)
+        r = Math.round(74 + (255 - 74) * redRatio);
+        g = Math.round(74 - (74 - 27) * redRatio);
+        b = Math.round(70 - 70 * redRatio);
+      }
       const pColor = `rgb(${r}, ${g}, ${b})`;
 
-      // Trail clear effect for fluid movement
-      ctx.fillStyle = 'rgba(221, 219, 214, 0.22)';
+      // Trail clear effect for fluid movement (match deep bg of the theme)
+      ctx.fillStyle = isDark ? 'rgba(14, 13, 13, 0.22)' : 'rgba(221, 219, 214, 0.22)';
       ctx.fillRect(0, 0, width, height);
 
       // Draw engineering grid lines behind the torus
-      ctx.strokeStyle = 'rgba(0, 0, 0, 0.015)';
+      ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.015)' : 'rgba(0, 0, 0, 0.015)';
       ctx.lineWidth = 1;
       for (let x = 0; x < width; x += 30) {
         ctx.beginPath();
@@ -87,7 +99,7 @@ export function MetricTorus() {
       }
 
       // Draw outer target circle
-      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.06)`;
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${isDark ? 0.12 : 0.06})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.arc(centerX, centerY, 150 + Math.sin(globalRotation * 2) * 5, 0, Math.PI * 2);
@@ -114,7 +126,9 @@ export function MetricTorus() {
 
       // Draw secondary orbit ring representing network I/O
       globalRotation -= 0.008 + (netActivity / 80) * 0.03;
-      ctx.strokeStyle = `rgba(0, 0, 0, ${0.08 + (netActivity / 80) * 0.15})`;
+      ctx.strokeStyle = isDark
+        ? `rgba(221, 219, 214, ${0.12 + (netActivity / 80) * 0.15})`
+        : `rgba(0, 0, 0, ${0.08 + (netActivity / 80) * 0.15})`;
       ctx.lineWidth = 1.5;
       ctx.setLineDash([4, 12]);
       ctx.beginPath();
@@ -130,7 +144,7 @@ export function MetricTorus() {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [cpu, network]);
 
   // Dynamically compute display color in React render as well
   const isHot = cpu.current > 75;

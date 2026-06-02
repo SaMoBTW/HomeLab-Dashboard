@@ -7,25 +7,25 @@ export default {
       colors: {
         hud: {
           // Backgrounds — sandstone palette
-          deep:    '#dddbd6',
-          base:    '#ebe9e4',
-          raised:  '#ffffff',
-          overlay: '#0a0a0a',
+          deep:    'var(--hud-deep)',
+          base:    'var(--hud-base)',
+          raised:  'var(--hud-raised)',
+          overlay: 'var(--hud-overlay)',
           // Borders — pure black lines
-          border:  '#000000',
-          bright:  '#222222',
+          border:  'var(--hud-border)',
+          bright:  'var(--hud-bright)',
           // Accent system — crimson red
-          accent:  '#ff1b00',
-          'accent-dim': 'rgba(255,27,0,0.08)',
-          'accent-glow': 'rgba(255,27,0,0.15)',
+          accent:  'var(--hud-accent)',
+          'accent-dim': 'var(--hud-accent-dim)',
+          'accent-glow': 'var(--hud-accent-glow)',
           // Status palette
-          amber:   '#e8b34b',
-          blue:    '#4d9fff',
-          red:     '#ff1b00',
+          amber:   'var(--hud-amber)',
+          blue:    'var(--hud-blue)',
+          red:     'var(--hud-red)',
           // Text
-          'text-1': '#000000',
-          'text-2': '#4a4a46',
-          'text-3': '#b5afa6',
+          'text-1': 'var(--hud-text-1)',
+          'text-2': 'var(--hud-text-2)',
+          'text-3': 'var(--hud-text-3)',
         },
       },
       fontFamily: {

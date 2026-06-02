@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAlerts } from '../../context/AlertContext';
 import { AlertBanner } from '../widgets/AlertBanner';
 import { TerminalModule } from '../../modules/terminal/TerminalModule';
@@ -14,6 +14,28 @@ export function AppShell() {
   const { alerts, dismissAlert } = useAlerts();
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [expandedCard, setExpandedCard] = useState<'stats' | 'containers' | 'analytics' | null>(null);
+
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved) return saved === 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (isDarkMode) {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  const toggleTheme = () => setIsDarkMode(!isDarkMode);
   
   const activeAlerts = alerts.filter((a) => !a.dismissed);
 
@@ -40,6 +62,13 @@ export function AppShell() {
         <nav className="flex items-center gap-6 font-display font-bold text-[9px] tracking-widest uppercase text-hud-text-3">
           <a href="#overview" className="hover:text-hud-text-1 transition-colors">Overview</a>
           <a href="#metrics" className="hover:text-hud-text-1 transition-colors">Metrics</a>
+          <span className="w-px h-3 bg-hud-border/20" />
+          <button
+            onClick={toggleTheme}
+            className="hover:text-hud-text-1 transition-colors font-mono tracking-widest uppercase font-semibold text-[9px]"
+          >
+            theme: {isDarkMode ? 'dark' : 'light'}
+          </button>
         </nav>
       </header>
 
