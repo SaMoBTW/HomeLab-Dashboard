@@ -75,9 +75,9 @@ export function ContainersModule() {
               onClick={() => setFilter(value)}
               className="px-3 py-2 font-mono text-[10px] tracking-widest uppercase transition-all duration-150"
               style={{
-                color:           filter === value ? color : '#3a4f66',
+                color:           filter === value ? color : 'var(--hud-text-2)',
                 backgroundColor: filter === value ? `${color}12` : 'transparent',
-                borderRight:     '1px solid #000000',
+                borderRight:     '1px solid var(--hud-border)',
               }}
             >
               {label}

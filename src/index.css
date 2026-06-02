@@ -32,6 +32,7 @@
     --grid-line-1: rgba(0, 0, 0, 0.02);
     --grid-line-2: rgba(0, 0, 0, 0.015);
     --bar-bg: rgba(0, 0, 0, 0.08);
+    --chart-grid: rgba(0, 0, 0, 0.06);
   }
 
   .dark {
@@ -60,6 +61,7 @@
     --grid-line-1: rgba(255, 255, 255, 0.012);
     --grid-line-2: rgba(255, 255, 255, 0.008);
     --bar-bg: rgba(255, 255, 255, 0.08);
+    --chart-grid: rgba(255, 255, 255, 0.08);
   }
 
   body {

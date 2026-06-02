@@ -2,8 +2,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { useMetrics } from '../../context/MetricsContext';
 import { WidgetCard } from '../../components/layout/WidgetCard';
 
-const TICK = { fill: '#4a4a46', fontSize: 10, fontFamily: 'JetBrains Mono' };
-const TOOLTIP_STYLE = { background: '#ebe9e4', border: '1px solid #000000', borderRadius: 0, fontSize: 11, fontFamily: 'JetBrains Mono' };
+const TICK = { fill: 'var(--hud-text-2)', fontSize: 10, fontFamily: 'JetBrains Mono' };
+const TOOLTIP_STYLE = { background: 'var(--hud-base)', border: '1px solid var(--hud-border)', borderRadius: 0, fontSize: 11, fontFamily: 'JetBrains Mono', color: 'var(--hud-text-1)' };
 
 export function NetworkChart() {
   const { network } = useMetrics();
@@ -27,12 +27,12 @@ export function NetworkChart() {
       </div>
       <ResponsiveContainer width="100%" height={180}>
         <LineChart data={network.history} margin={{ top: 4, right: 4, left: -28, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="2 4" stroke="rgba(0,0,0,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="2 4" stroke="var(--chart-grid)" vertical={false} />
           <XAxis dataKey="time" tick={TICK} tickLine={false} axisLine={false} interval="preserveStartEnd" />
           <YAxis tick={TICK} tickLine={false} axisLine={false} unit="M" />
           <Tooltip
             contentStyle={TOOLTIP_STYLE}
-            labelStyle={{ color: '#4a4a46' }}
+            labelStyle={{ color: 'var(--hud-text-2)' }}
             formatter={(v, name) => [typeof v === 'number' ? `${v.toFixed(2)} Mbps` : v, name === 'inbound' ? '↓ In' : '↑ Out']}
           />
           <Line type="monotone" dataKey="inbound"  stroke="#ff1b00" strokeWidth={1.5} dot={false} isAnimationActive={false} />

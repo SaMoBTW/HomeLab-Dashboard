@@ -2,12 +2,12 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { useMetrics } from '../../context/MetricsContext';
 import { WidgetCard } from '../../components/layout/WidgetCard';
 
-const TICK = { fill: '#4a4a46', fontSize: 10, fontFamily: 'JetBrains Mono' };
-const TOOLTIP_STYLE = { background: '#ebe9e4', border: '1px solid #000000', borderRadius: 0, fontSize: 11, fontFamily: 'JetBrains Mono' };
+const TICK = { fill: 'var(--hud-text-2)', fontSize: 10, fontFamily: 'JetBrains Mono' };
+const TOOLTIP_STYLE = { background: 'var(--hud-base)', border: '1px solid var(--hud-border)', borderRadius: 0, fontSize: 11, fontFamily: 'JetBrains Mono', color: 'var(--hud-text-1)' };
 
 export function RamLoadChart() {
   const { ram } = useMetrics();
-  const color = ram.percent > 85 ? '#ff1b00' : ram.percent > 65 ? '#e8b34b' : '#000000';
+  const color = ram.percent > 85 ? '#ff1b00' : ram.percent > 65 ? '#e8b34b' : 'var(--hud-text-1)';
 
   return (
     <WidgetCard title="RAM Load" subtitle={`${ram.used.toFixed(1)} / ${ram.total} GB`}>
@@ -26,10 +26,10 @@ export function RamLoadChart() {
               <stop offset="95%" stopColor={color} stopOpacity={0.01} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="2 4" stroke="rgba(0,0,0,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="2 4" stroke="var(--chart-grid)" vertical={false} />
           <XAxis dataKey="time" tick={TICK} tickLine={false} axisLine={false} interval="preserveStartEnd" />
           <YAxis domain={[0, 100]} tick={TICK} tickLine={false} axisLine={false} unit="%" />
-          <Tooltip contentStyle={TOOLTIP_STYLE} labelStyle={{ color: '#4a4a46' }} itemStyle={{ color }} formatter={(v) => [typeof v === 'number' ? `${v.toFixed(1)}%` : v, 'RAM']} />
+          <Tooltip contentStyle={TOOLTIP_STYLE} labelStyle={{ color: 'var(--hud-text-2)' }} itemStyle={{ color }} formatter={(v) => [typeof v === 'number' ? `${v.toFixed(1)}%` : v, 'RAM']} />
           <Area type="monotone" dataKey="value" stroke={color} strokeWidth={1.5} fill="url(#ramFill)" dot={false} isAnimationActive={false} />
         </AreaChart>
       </ResponsiveContainer>
