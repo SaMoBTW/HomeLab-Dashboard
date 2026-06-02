@@ -4,26 +4,28 @@
 
 @layer base {
   :root {
-    --accent:      #00d4aa;
-    --accent-dim:  rgba(0, 212, 170, 0.12);
-    --accent-glow: rgba(0, 212, 170, 0.35);
+    --accent:      #ff1b00;
+    --accent-dim:  rgba(255, 27, 0, 0.08);
+    --accent-glow: rgba(255, 27, 0, 0.15);
     --amber:       #e8b34b;
     --blue:        #4d9fff;
-    --red:         #ff4757;
+    --red:         #ff1b00;
   }
 
   body {
-    background-color: #060a0f;
-    color: #dde6f0;
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    background-color: #dddbd6;
+    color: #000000;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
-    /* Subtle grid texture */
+    /* Scaffold blueprint paper grid texture */
     background-image:
-      linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-    background-size: 40px 40px;
+      linear-gradient(180deg, transparent 32%, rgba(0, 0, 0, 0.02) 32.5%, transparent 33%),
+      linear-gradient(90deg, transparent 44%, rgba(0, 0, 0, 0.02) 44.5%, transparent 45%),
+      repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(0, 0, 0, 0.015) 19px, rgba(0, 0, 0, 0.015) 20px),
+      repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(0, 0, 0, 0.015) 19px, rgba(0, 0, 0, 0.015) 20px);
+    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
     background-attachment: fixed;
   }
 
@@ -36,34 +38,34 @@
   /* Scrollbars */
   * {
     scrollbar-width: thin;
-    scrollbar-color: #1a2840 transparent;
+    scrollbar-color: #000000 transparent;
   }
   *::-webkit-scrollbar       { width: 4px; height: 4px; }
   *::-webkit-scrollbar-track { background: transparent; }
-  *::-webkit-scrollbar-thumb { background: #1a2840; border-radius: 2px; }
-  *::-webkit-scrollbar-thumb:hover { background: #203354; }
+  *::-webkit-scrollbar-thumb { background: #000000; border-radius: 0px; }
+  *::-webkit-scrollbar-thumb:hover { background: #222222; }
 
   /* react-grid-layout */
   .react-grid-item.react-grid-placeholder {
-    background: rgba(0,212,170,0.08) !important;
-    border: 1px dashed rgba(0,212,170,0.4) !important;
+    background: rgba(255,27,0,0.05) !important;
+    border: 1px dashed rgba(255,27,0,0.4) !important;
     border-radius: 0 !important;
   }
   .react-grid-item > .react-resizable-handle::after {
     border-color: var(--accent) !important;
-    opacity: 0.5;
+    opacity: 0.8;
   }
 }
 
 @layer utilities {
   /* Typography helpers */
   .label {
-    font-family: 'Rajdhani', system-ui, sans-serif;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-size: 0.65rem;
-    color: #3a4f66;
+    color: #4a4a46;
   }
 
   .data-value {
@@ -73,8 +75,8 @@
 
   /* Card styles */
   .hud-card {
-    background: #0d1520;
-    border: 1px solid #1a2840;
+    background: #ebe9e4;
+    border: 1px solid #000000;
     position: relative;
     overflow: hidden;
   }
@@ -84,7 +86,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.03), transparent);
   }
 
   /* Accent bar — left side accent line on cards */
@@ -92,15 +94,14 @@
     content: '';
     position: absolute;
     top: 0; left: 0; bottom: 0;
-    width: 2px;
+    width: 2.5px;
     background: var(--accent);
-    box-shadow: 0 0 8px var(--accent-glow);
   }
 
-  /* Status glow variants */
-  .glow-accent { box-shadow: 0 0 24px -4px var(--accent-glow); }
-  .glow-amber  { box-shadow: 0 0 16px -4px rgba(232,179,75,0.4); }
-  .glow-red    { box-shadow: 0 0 16px -4px rgba(255,71,87,0.4); }
+  /* Flat solid shadow variants (neo-brutalist tech style) */
+  .glow-accent { box-shadow: 2px 2px 0px 0px rgba(255,27,0,0.25); }
+  .glow-amber  { box-shadow: 2px 2px 0px 0px rgba(232,179,75,0.25); }
+  .glow-red    { box-shadow: 2px 2px 0px 0px rgba(255,27,0,0.25); }
 
   /* Section divider — the "── LABEL ────" style */
   .hud-divider {
@@ -112,13 +113,13 @@
     content: '';
     flex: 1;
     height: 1px;
-    background: #1a2840;
+    background: #000000;
   }
 
   /* Thin progress bar — sharp, full-width */
   .hud-bar {
     height: 2px;
-    background: #1a2840;
+    background: rgba(0,0,0,0.08);
     position: relative;
     overflow: hidden;
   }
@@ -127,13 +128,89 @@
     transition: width 0.6s ease;
     position: relative;
   }
-  .hud-bar-fill::after {
-    content: '';
-    position: absolute;
-    right: 0; top: 0; bottom: 0;
-    width: 4px;
-    background: inherit;
-    filter: blur(2px);
-    opacity: 0.8;
-  }
+}
+
+/* Horizontal scroller layouts modeled on Ouro Labs */
+.hscroll-frame {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  border-top: 1px solid #000000;
+}
+.hscroll-track {
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overflow-anchor: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 2rem;
+  scroll-padding-right: 2rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  height: 540px;
+  background: #dddbd6;
+  border-bottom: 1px solid #000000;
+}
+.hscroll-track::-webkit-scrollbar {
+  display: none;
+}
+.hcard {
+  cursor: default;
+  flex: 0 0 clamp(320px, 85vw, 680px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  box-sizing: border-box;
+  padding: 24px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  margin-left: -1px;
+  transition: flex 0.4s cubic-bezier(0.2, 0.88, 0.12, 1), background-color 0.3s ease;
+}
+.hcard--expanded {
+  flex: 0 0 clamp(480px, 95vw, 1080px);
+}
+
+/* Overlay Modal panel for Terminal Console */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(6, 10, 15, 0.45);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-window {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1000;
+  width: min(720px, 92vw);
+  height: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.2, 0.88, 0.12, 1), transform 0.3s cubic-bezier(0.2, 0.88, 0.12, 1);
+}
+.modal-window.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 20px);
 }

@@ -2,8 +2,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { useMetrics } from '../../context/MetricsContext';
 import { WidgetCard } from '../../components/layout/WidgetCard';
 
-const TICK = { fill: '#3a4f66', fontSize: 10, fontFamily: 'JetBrains Mono' };
-const TOOLTIP_STYLE = { background: '#0d1520', border: '1px solid #1a2840', borderRadius: 0, fontSize: 11, fontFamily: 'JetBrains Mono' };
+const TICK = { fill: '#4a4a46', fontSize: 10, fontFamily: 'JetBrains Mono' };
+const TOOLTIP_STYLE = { background: '#ebe9e4', border: '1px solid #000000', borderRadius: 0, fontSize: 11, fontFamily: 'JetBrains Mono' };
 
 export function NetworkChart() {
   const { network } = useMetrics();
@@ -12,13 +12,13 @@ export function NetworkChart() {
     <WidgetCard title="Network Throughput" subtitle="Mbps">
       <div className="flex items-center gap-6 mb-4">
         <div className="flex items-center gap-2">
-          <span className="w-4 h-px bg-hud-accent" style={{ boxShadow: '0 0 4px var(--accent-glow)' }} />
-          <span className="font-mono text-xs" style={{ color: '#00d4aa' }}>
+          <span className="w-4 h-px bg-hud-accent" />
+          <span className="font-mono text-xs" style={{ color: '#ff1b00' }}>
             ↓ {network.inbound.toFixed(1)} <span className="text-hud-text-3">in</span>
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-4 h-px bg-hud-amber" style={{ boxShadow: '0 0 4px rgba(232,179,75,0.4)' }} />
+          <span className="w-4 h-px bg-hud-amber" />
           <span className="font-mono text-xs" style={{ color: '#e8b34b' }}>
             ↑ {network.outbound.toFixed(1)} <span className="text-hud-text-3">out</span>
           </span>
@@ -27,16 +27,16 @@ export function NetworkChart() {
       </div>
       <ResponsiveContainer width="100%" height={180}>
         <LineChart data={network.history} margin={{ top: 4, right: 4, left: -28, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="2 4" stroke="#1a2840" vertical={false} />
+          <CartesianGrid strokeDasharray="2 4" stroke="rgba(0,0,0,0.06)" vertical={false} />
           <XAxis dataKey="time" tick={TICK} tickLine={false} axisLine={false} interval="preserveStartEnd" />
           <YAxis tick={TICK} tickLine={false} axisLine={false} unit="M" />
           <Tooltip
             contentStyle={TOOLTIP_STYLE}
-            labelStyle={{ color: '#7a8fa6' }}
+            labelStyle={{ color: '#4a4a46' }}
             formatter={(v, name) => [typeof v === 'number' ? `${v.toFixed(2)} Mbps` : v, name === 'inbound' ? '↓ In' : '↑ Out']}
           />
-          <Line type="monotone" dataKey="inbound"  stroke="#00d4aa" strokeWidth={1.5} dot={false} isAnimationActive={false} style={{ filter: 'drop-shadow(0 0 3px rgba(0,212,170,0.4))' }} />
-          <Line type="monotone" dataKey="outbound" stroke="#e8b34b" strokeWidth={1.5} dot={false} isAnimationActive={false} style={{ filter: 'drop-shadow(0 0 3px rgba(232,179,75,0.4))' }} />
+          <Line type="monotone" dataKey="inbound"  stroke="#ff1b00" strokeWidth={1.5} dot={false} isAnimationActive={false} />
+          <Line type="monotone" dataKey="outbound" stroke="#e8b34b" strokeWidth={1.5} dot={false} isAnimationActive={false} />
         </LineChart>
       </ResponsiveContainer>
     </WidgetCard>

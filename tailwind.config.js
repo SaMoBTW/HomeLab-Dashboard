@@ -6,30 +6,30 @@ export default {
     extend: {
       colors: {
         hud: {
-          // Backgrounds — three distinct depths
-          deep:    '#060a0f',
-          base:    '#090e17',
-          raised:  '#0d1520',
-          overlay: '#121d2e',
-          // Borders
-          border:  '#1a2840',
-          bright:  '#203354',
-          // Accent system — single primary teal-green
-          accent:  '#00d4aa',
-          'accent-dim': 'rgba(0,212,170,0.12)',
-          'accent-glow': 'rgba(0,212,170,0.35)',
+          // Backgrounds — sandstone palette
+          deep:    '#dddbd6',
+          base:    '#ebe9e4',
+          raised:  '#ffffff',
+          overlay: '#0a0a0a',
+          // Borders — pure black lines
+          border:  '#000000',
+          bright:  '#222222',
+          // Accent system — crimson red
+          accent:  '#ff1b00',
+          'accent-dim': 'rgba(255,27,0,0.08)',
+          'accent-glow': 'rgba(255,27,0,0.15)',
           // Status palette
           amber:   '#e8b34b',
           blue:    '#4d9fff',
-          red:     '#ff4757',
+          red:     '#ff1b00',
           // Text
-          'text-1': '#dde6f0',
-          'text-2': '#7a8fa6',
-          'text-3': '#3a4f66',
+          'text-1': '#000000',
+          'text-2': '#4a4a46',
+          'text-3': '#b5afa6',
         },
       },
       fontFamily: {
-        display: ['Rajdhani', 'system-ui', 'sans-serif'],
+        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
         mono:    ['JetBrains Mono', 'Fira Code', 'ui-monospace', 'monospace'],
       },
       animation: {

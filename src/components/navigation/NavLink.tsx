@@ -33,7 +33,7 @@ export function NavLink({ item, collapsed = false, onClick }: NavLinkProps) {
     'font-display font-semibold tracking-widest uppercase',
     isActive
       ? 'text-hud-accent bg-hud-accent-dim border-l-2 border-hud-accent'
-      : 'text-hud-text-2 hover:text-hud-text-1 hover:bg-white/[0.02] border-l-2 border-transparent',
+      : 'text-hud-text-2 hover:text-hud-text-1 hover:bg-black/[0.02] border-l-2 border-transparent',
   ].join(' ');
 
   const content = (

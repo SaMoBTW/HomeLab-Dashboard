@@ -8,11 +8,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const VARIANTS: Record<NonNullable<ButtonProps['variant']>, { style: React.CSSProperties; base: string }> = {
-  primary: { base: 'text-hud-deep font-semibold', style: { backgroundColor: '#00d4aa', boxShadow: '0 0 10px rgba(0,212,170,0.3)' } },
-  ghost:   { base: 'text-hud-text-2 hover:text-hud-text-1 border border-hud-border hover:border-hud-bright', style: {} },
-  danger:  { base: 'border font-medium', style: { color: '#ff4757', borderColor: 'rgba(255,71,87,0.3)', backgroundColor: 'rgba(255,71,87,0.08)' } },
-  success: { base: 'border font-medium', style: { color: '#00d4aa', borderColor: 'rgba(0,212,170,0.3)', backgroundColor: 'rgba(0,212,170,0.08)' } },
-  warning: { base: 'border font-medium', style: { color: '#e8b34b', borderColor: 'rgba(232,179,75,0.3)', backgroundColor: 'rgba(232,179,75,0.08)' } },
+  primary: { base: 'text-hud-deep font-semibold bg-hud-accent border border-hud-border', style: { boxShadow: '2px 2px 0px 0px rgba(0,0,0,1)' } },
+  ghost:   { base: 'text-hud-text-2 hover:text-hud-text-1 border border-hud-border hover:bg-black/5', style: {} },
+  danger:  { base: 'border font-medium', style: { color: '#ff1b00', borderColor: '#ff1b00', backgroundColor: 'rgba(255, 27, 0, 0.08)' } },
+  success: { base: 'border font-medium', style: { color: '#000000', borderColor: '#000000', backgroundColor: 'rgba(0, 0, 0, 0.05)' } },
+  warning: { base: 'border font-medium', style: { color: '#e8b34b', borderColor: '#e8b34b', backgroundColor: 'rgba(232, 179, 75, 0.08)' } },
 };
 
 const SIZES: Record<NonNullable<ButtonProps['size']>, string> = {

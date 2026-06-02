@@ -14,23 +14,18 @@ interface StatCardProps {
   glowColor: string;
 }
 
-function StatCard({ label, value, unit, subValue, icon, percent, history, accentColor, glowColor }: StatCardProps) {
+function StatCard({ label, value, unit, subValue, icon, percent, history, accentColor }: Omit<StatCardProps, 'glowColor'>) {
   const statusColor =
-    percent > 85 ? '#ff4757' :
+    percent > 85 ? '#ff1b00' :
     percent > 65 ? '#e8b34b' :
     accentColor;
-
-  const statusGlow =
-    percent > 85 ? 'rgba(255,71,87,0.35)' :
-    percent > 65 ? 'rgba(232,179,75,0.35)' :
-    glowColor;
 
   return (
     <div className="hud-card flex flex-col gap-0 overflow-hidden">
       {/* Top accent bar */}
       <div
         className="h-0.5 w-full transition-colors duration-700"
-        style={{ backgroundColor: statusColor, boxShadow: `0 0 8px ${statusGlow}` }}
+        style={{ backgroundColor: statusColor }}
       />
 
       <div className="p-4 flex flex-col gap-3">
@@ -54,7 +49,7 @@ function StatCard({ label, value, unit, subValue, icon, percent, history, accent
             <div className="flex items-baseline gap-1">
               <span
                 className="font-mono text-2xl font-semibold leading-none data-value"
-                style={{ color: statusColor, textShadow: `0 0 20px ${statusGlow}` }}
+                style={{ color: statusColor }}
               >
                 {value}
               </span>
@@ -87,7 +82,6 @@ function StatCard({ label, value, unit, subValue, icon, percent, history, accent
             style={{
               width: `${Math.min(percent, 100)}%`,
               backgroundColor: statusColor,
-              boxShadow: `0 0 6px ${statusGlow}`,
             }}
           />
         </div>
@@ -109,8 +103,7 @@ export function QuickStats() {
         icon={<Cpu size={13} />}
         percent={cpu.current}
         history={cpu.history}
-        accentColor="#4d9fff"
-        glowColor="rgba(77,159,255,0.35)"
+        accentColor="#ff1b00"
       />
       <StatCard
         label="Memory"
@@ -120,8 +113,7 @@ export function QuickStats() {
         icon={<MemoryStick size={13} />}
         percent={ram.percent}
         history={ram.history}
-        accentColor="#a855f7"
-        glowColor="rgba(168,85,247,0.35)"
+        accentColor="#000000"
       />
       <StatCard
         label="Storage"
@@ -131,8 +123,7 @@ export function QuickStats() {
         icon={<HardDrive size={13} />}
         percent={storage.percent}
         history={[...Array(20)].map(() => ({ value: storage.percent }))}
-        accentColor="#e8b34b"
-        glowColor="rgba(232,179,75,0.35)"
+        accentColor="#4a4a46"
       />
       <StatCard
         label="Network"
@@ -142,8 +133,7 @@ export function QuickStats() {
         icon={<Wifi size={13} />}
         percent={networkPct}
         history={network.history.map((p) => ({ value: p.inbound }))}
-        accentColor="#00d4aa"
-        glowColor="rgba(0,212,170,0.35)"
+        accentColor="#ff1b00"
       />
     </div>
   );

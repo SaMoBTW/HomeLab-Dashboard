@@ -18,11 +18,10 @@ export function WidgetCard({ title, subtitle, children, className = '', noPad = 
     <div
       className={[
         'relative flex flex-col h-full hud-card transition-all duration-150',
-        isCustomizing && 'border-hud-accent/50',
+        isCustomizing && 'border-hud-accent glow-accent',
         accent && 'hud-card-accent',
         className,
       ].filter(Boolean).join(' ')}
-      style={isCustomizing ? { boxShadow: '0 0 20px -8px var(--accent-glow)' } : undefined}
     >
       {/* Customize drag handle */}
       {isCustomizing && (
@@ -35,7 +34,7 @@ export function WidgetCard({ title, subtitle, children, className = '', noPad = 
       {(title || subtitle) && (
         <div className="flex items-center gap-3 px-4 pt-4 pb-3 shrink-0 border-b border-hud-border/60">
           {/* Accent dot */}
-          <span className="w-1 h-1 bg-hud-accent shrink-0" style={{ boxShadow: '0 0 4px var(--accent)' }} />
+          <span className="w-1.5 h-1.5 bg-hud-accent shrink-0" />
           {title && (
             <span className="font-display font-semibold text-xs tracking-widest uppercase text-hud-text-2">
               {title}

@@ -21,8 +21,8 @@ export function NavModeToggle() {
           className={[
             'flex items-center gap-1.5 px-2 py-1 text-xs font-display font-semibold tracking-widest uppercase transition-all duration-150',
             navMode === mode
-              ? 'bg-hud-accent-dim text-hud-accent'
-              : 'text-hud-text-3 hover:text-hud-text-2',
+              ? 'bg-hud-accent text-hud-raised'
+              : 'text-hud-text-2 hover:text-hud-text-1 hover:bg-black/[0.04]',
           ].join(' ')}
         >
           {icon}

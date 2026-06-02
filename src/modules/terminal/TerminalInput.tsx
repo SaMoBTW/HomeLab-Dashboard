@@ -38,10 +38,10 @@ export function TerminalInput({ onExecute, commandHistory, historyIndex, onHisto
   return (
     <div
       className="flex items-center gap-1 px-4 py-3 border-t border-hud-border shrink-0"
-      style={{ background: '#060a0f', fontFamily: 'JetBrains Mono, ui-monospace', fontSize: '12px' }}
+      style={{ background: '#0a0a0a', fontFamily: 'JetBrains Mono, ui-monospace, monospace', fontSize: '12px' }}
       onClick={() => inputRef.current?.focus()}
     >
-      <span style={{ color: '#3a4f66', userSelect: 'none', whiteSpace: 'nowrap' }}>user@homelab:~$&nbsp;</span>
+      <span style={{ color: '#ff1b00', userSelect: 'none', whiteSpace: 'nowrap' }}>ourolabs@origin:~$</span>
       <input
         ref={inputRef}
         type="text"
@@ -49,7 +49,7 @@ export function TerminalInput({ onExecute, commandHistory, historyIndex, onHisto
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
         className="flex-1 bg-transparent outline-none min-w-0"
-        style={{ color: '#00d4aa', caretColor: '#00d4aa' }}
+        style={{ color: '#e4e3e0', caretColor: '#ff1b00' }}
         spellCheck={false}
         autoComplete="off"
         autoCapitalize="off"

@@ -13,9 +13,9 @@ interface ContainerRowProps {
 }
 
 function cpuColor(cpu: number): string {
-  if (cpu > 80) return '#ff4757';
+  if (cpu > 80) return '#ff1b00';
   if (cpu > 50) return '#e8b34b';
-  return '#00d4aa';
+  return '#4a4a46';
 }
 
 function memPct(used: number, limit: number) {
@@ -25,15 +25,15 @@ function memPct(used: number, limit: number) {
 export function ContainerRow({ container, isTransitioning, onStart, onStop, onRestart }: ContainerRowProps) {
   const [expanded, setExpanded] = useState(false);
   const pct = memPct(container.memory, container.memoryLimit);
-  const memColor = pct > 80 ? '#ff4757' : pct > 60 ? '#e8b34b' : '#4d9fff';
+  const memColor = pct > 80 ? '#ff1b00' : pct > 60 ? '#e8b34b' : '#4a4a46';
   const cpuC = cpuColor(container.cpu);
 
   return (
     <>
       {/* Desktop row */}
-      <tr className="hidden md:table-row border-b border-hud-border/50 hover:bg-white/[0.015] transition-colors group">
+      <tr className="hidden md:table-row border-b border-hud-border/50 hover:bg-black/[0.015] transition-colors group">
         <td className="py-3 px-4">
-          <div className="flex flex-col gap-0.5">
+          <div className="flex flex-col gap.5">
             <span className="font-display font-semibold text-sm tracking-wide text-hud-text-1">{container.name}</span>
             <span className="font-mono text-[10px] text-hud-text-3">{container.id.slice(0, 12)}</span>
           </div>
@@ -103,8 +103,8 @@ export function ContainerRow({ container, isTransitioning, onStart, onStop, onRe
               <div className="grid grid-cols-3 gap-2">
                 {[
                   { label: 'CPU', value: `${container.cpu.toFixed(1)}%`, color: cpuC },
-                  { label: 'MEM', value: `${container.memory}M`, color: '#4d9fff' },
-                  { label: 'UPTIME', value: container.uptime, color: '#7a8fa6' },
+                  { label: 'MEM', value: `${container.memory}M`, color: memColor },
+                  { label: 'UPTIME', value: container.uptime, color: '#b5afa6' },
                 ].map(({ label, value, color }) => (
                   <div key={label}>
                     <p className="label mb-1">{label}</p>

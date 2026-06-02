@@ -3,20 +3,29 @@ import { useTerminal } from '../../hooks/useTerminal';
 import { TerminalOutput } from './TerminalOutput';
 import { TerminalInput } from './TerminalInput';
 
-export function TerminalModule() {
+interface TerminalModuleProps {
+  onClose?: () => void;
+}
+
+export function TerminalModule({ onClose }: TerminalModuleProps) {
   const { history, commandHistory, historyIndex, setHistoryIndex, executeCommand } = useTerminal();
 
   return (
     <div className="p-4 h-full flex flex-col min-h-[500px]">
-      <div className="flex flex-col flex-1 overflow-hidden hud-card">
+      <div className="flex flex-col flex-1 overflow-hidden border border-hud-border bg-hud-overlay text-[#e4e3e0]">
         {/* Title bar */}
-        <div className="flex items-center justify-between px-4 py-2.5 border-b border-hud-border bg-hud-overlay shrink-0">
+        <div className="flex items-center justify-between px-4 py-2.5 border-b border-hud-border bg-[#141414] shrink-0">
           <div className="flex items-center gap-3">
             {/* Traffic lights */}
             <div className="flex gap-1.5">
-              <span className="w-2.5 h-2.5" style={{ backgroundColor: '#ff4757', boxShadow: '0 0 4px rgba(255,71,87,0.5)' }} />
-              <span className="w-2.5 h-2.5" style={{ backgroundColor: '#e8b34b', boxShadow: '0 0 4px rgba(232,179,75,0.5)' }} />
-              <span className="w-2.5 h-2.5" style={{ backgroundColor: '#00d4aa', boxShadow: '0 0 4px rgba(0,212,170,0.5)' }} />
+              <span
+                onClick={onClose}
+                className="w-2.5 h-2.5 rounded-full cursor-pointer hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: '#ff1b00' }}
+                title="Close"
+              />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#e8b34b' }} />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#00d4aa' }} />
             </div>
             <div className="w-px h-4 bg-hud-border" />
             <div className="flex items-center gap-1.5">
@@ -40,7 +49,7 @@ export function TerminalModule() {
         </div>
 
         {/* Accent line */}
-        <div className="h-0.5 bg-hud-accent/20 shrink-0" />
+        <div className="h-px bg-hud-border shrink-0" />
 
         <TerminalOutput history={history} />
         <TerminalInput

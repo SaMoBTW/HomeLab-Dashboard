@@ -5,12 +5,12 @@ interface StatusBadgeProps {
   showLabel?: boolean;
 }
 
-const CFG: Record<Status, { color: string; glow: string; label: string }> = {
-  online:  { color: '#00d4aa', glow: 'rgba(0,212,170,0.6)',   label: 'ONLINE' },
-  offline: { color: '#3a4f66', glow: 'transparent',            label: 'OFFLINE' },
-  running: { color: '#00d4aa', glow: 'rgba(0,212,170,0.6)',   label: 'RUNNING' },
-  paused:  { color: '#e8b34b', glow: 'rgba(232,179,75,0.6)',  label: 'PAUSED' },
-  exited:  { color: '#ff4757', glow: 'rgba(255,71,87,0.6)',   label: 'EXITED' },
+const CFG: Record<Status, { color: string; label: string }> = {
+  online:  { color: '#ff1b00', label: 'ONLINE' },
+  offline: { color: '#b5afa6', label: 'OFFLINE' },
+  running: { color: '#ff1b00', label: 'RUNNING' },
+  paused:  { color: '#e8b34b', label: 'PAUSED' },
+  exited:  { color: '#b5afa6', label: 'EXITED' },
 };
 
 export function StatusBadge({ status, showLabel = true }: StatusBadgeProps) {
@@ -23,12 +23,12 @@ export function StatusBadge({ status, showLabel = true }: StatusBadgeProps) {
         {pulse && (
           <span
             className="absolute inset-0 animate-ping"
-            style={{ backgroundColor: c.color, opacity: 0.4 }}
+            style={{ backgroundColor: c.color, opacity: 0.25 }}
           />
         )}
         <span
           className="relative w-1.5 h-1.5"
-          style={{ backgroundColor: c.color, boxShadow: `0 0 5px ${c.glow}` }}
+          style={{ backgroundColor: c.color }}
         />
       </span>
       {showLabel && (

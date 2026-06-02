@@ -14,9 +14,7 @@ export function Sidebar() {
     >
       {/* Brand */}
       <div className={`flex items-center h-14 border-b border-hud-border px-4 shrink-0 ${collapsed ? 'justify-center' : 'gap-3'}`}>
-        <div className="relative w-7 h-7 flex items-center justify-center shrink-0">
-          <div className="absolute inset-0 bg-hud-accent opacity-10" />
-          <div className="absolute inset-0 border border-hud-accent opacity-40" />
+        <div className="relative w-7 h-7 flex items-center justify-center shrink-0 border border-hud-border bg-hud-accent/10">
           <Cpu size={13} className="text-hud-accent relative z-10" />
         </div>
         {!collapsed && (

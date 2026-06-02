@@ -10,13 +10,13 @@ const ICON_MAP: Record<string, LucideIcon> = {
 };
 
 const CATEGORY_COLOR: Record<ServiceLink['category'], string> = {
-  media:          '#a855f7',
-  network:        '#4d9fff',
-  management:     '#e8b34b',
-  virtualization: '#00d4aa',
-  monitoring:     '#f97316',
-  storage:        '#22d3ee',
-  automation:     '#ec4899',
+  media:          '#ff1b00',
+  network:        '#000000',
+  management:     '#4a4a46',
+  virtualization: '#ff1b00',
+  monitoring:     '#e8b34b',
+  storage:        '#4a4a46',
+  automation:     '#ff1b00',
 };
 
 interface ServiceLinkCardProps {
@@ -25,7 +25,7 @@ interface ServiceLinkCardProps {
 
 export function ServiceLinkCard({ service }: ServiceLinkCardProps) {
   const Icon = ICON_MAP[service.icon] ?? Server;
-  const catColor = CATEGORY_COLOR[service.category] ?? '#7a8fa6';
+  const catColor = CATEGORY_COLOR[service.category] ?? '#b5afa6';
   const isOnline = service.status === 'online';
 
   return (
@@ -38,8 +38,8 @@ export function ServiceLinkCard({ service }: ServiceLinkCardProps) {
         '--card-accent': catColor,
       } as React.CSSProperties}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = `${catColor}40`;
-        (e.currentTarget as HTMLElement).style.boxShadow = `0 0 20px -8px ${catColor}30`;
+        (e.currentTarget as HTMLElement).style.borderColor = '#000000';
+        (e.currentTarget as HTMLElement).style.boxShadow = `2px 2px 0px 0px ${catColor}`;
       }}
       onMouseLeave={(e) => {
         (e.currentTarget as HTMLElement).style.borderColor = '';
@@ -51,18 +51,17 @@ export function ServiceLinkCard({ service }: ServiceLinkCardProps) {
         className="absolute left-0 top-0 bottom-0 w-0.5 transition-opacity duration-200"
         style={{
           backgroundColor: catColor,
-          opacity: isOnline ? 0.6 : 0.2,
-          boxShadow: isOnline ? `0 0 6px ${catColor}` : 'none',
+          opacity: isOnline ? 0.8 : 0.2,
         }}
       />
 
       {/* Offline overlay */}
-      {!isOnline && <div className="absolute inset-0 bg-hud-deep/40" />}
+      {!isOnline && <div className="absolute inset-0 bg-[#ebe9e4]/40" />}
 
       <div className="flex items-start justify-between relative">
         <div
           className="w-8 h-8 flex items-center justify-center"
-          style={{ color: isOnline ? catColor : '#3a4f66' }}
+          style={{ color: isOnline ? catColor : '#b5afa6' }}
         >
           <Icon size={18} />
         </div>
@@ -71,14 +70,13 @@ export function ServiceLinkCard({ service }: ServiceLinkCardProps) {
           {isOnline && (
             <span
               className="absolute inset-0 animate-ping"
-              style={{ backgroundColor: '#00d4aa', opacity: 0.4 }}
+              style={{ backgroundColor: '#ff1b00', opacity: 0.25 }}
             />
           )}
           <span
             className="relative w-1.5 h-1.5"
             style={{
-              backgroundColor: isOnline ? '#00d4aa' : '#3a4f66',
-              boxShadow: isOnline ? '0 0 5px rgba(0,212,170,0.6)' : 'none',
+              backgroundColor: isOnline ? '#ff1b00' : '#b5afa6',
             }}
           />
         </span>
