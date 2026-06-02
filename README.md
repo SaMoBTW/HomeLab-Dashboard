@@ -4,7 +4,7 @@ Welcome to the **HomeLab Command Center Dashboard**, a sleek, high-tech, HUD-ins
 
 ---
 
-## ✨ Features
+## Features
 
 - **📊 Real-time Metrics Simulation**:
   - Live tracking of CPU usage, Memory load, Storage consumption, and Network bandwidth (inbound/outbound traffic).
@@ -67,12 +67,14 @@ You will need [Node.js](https://nodejs.org/) installed on your machine. We recom
 ### Installation
 
 1. Clone this repository to your local system:
+
    ```bash
    git clone https://github.com/SaMoBTW/HomeLab-Dashboard.git
    cd HomeLab-Dashboard
    ```
 
 2. Install dependencies:
+
    ```bash
    pnpm install
    # or
@@ -80,11 +82,13 @@ You will need [Node.js](https://nodejs.org/) installed on your machine. We recom
    ```
 
 3. Run the development server:
+
    ```bash
    npm run dev
    ```
 
 4. Build the application for production:
+
    ```bash
    npm run build
    ```
